@@ -29,7 +29,7 @@ for filename in os.listdir("."):
             filtered_subject = [word for word in subject if ( word not in stops and word != 'spam') ]
             # write to file
            # nf = open(filename + '.s', 'w')
-            nf.write(' '.join(filtered_subject) + '\r\n')
+            nf.write(' '.join(filtered_subject))
         else:
             nf = open(filename + '.s', 'w')
             nf.write('subjectless')
