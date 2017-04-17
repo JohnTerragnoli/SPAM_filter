@@ -18,3 +18,25 @@ for n=1:size(sorted,1) % every email
         end
     end
 end
+
+%% create trainer
+svm = fitcsvm(words, labels, 'Standardize', true, 'KernelFunction', 'RBF', 'KernelScale', 'auto');
+[ t_labels, t_scores] = predict(svm, words);
+
+%% confusion matrix
+expected = zeros(2, size(words, 1));
+for i = 1:size(words, 1)
+    index = int32(labels(i)) + 1;
+    expected(index, i) = 1;
+end
+results = zeros(2, size(words, 1)); 
+
+for i = 1:size(words,1)
+    index = int32(t_labels(i)) + 1;
+    results(index, i) = 1;
+end
+
+figure
+plotconfusion(expected, results);
+set(gca,'yticklabel',{'genuine' 'spam' ' '})
+set(gca,'xticklabel',{'classified genuine' 'classified spam' ' '})
