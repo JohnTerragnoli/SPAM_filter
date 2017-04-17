@@ -18,14 +18,14 @@ for filename in os.listdir("."):
         fp = open(filename,"r", errors='ignore')
         subject = fp.readline().lower()
         subject = subject.replace('subject: ','')
-
+        
         if subject != '':
-            # subject = [ word.translate(translator) for word in subject]
+            subject = [ word.translate(translator) for word in subject]
             # filter out common words
             stops = stopwords.words('english')
             filtered_subject = [word for word in subject if ( word not in stops and word != 'spam') ]
             # write to file
-            nf.write(str(filtered_subject))
+            nf.write(''.join(subject))
         else:
             # nf = open(filename + '.s', 'w')
             nf.write(filename + ' ' + 'subjectless')
