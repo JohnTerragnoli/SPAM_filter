@@ -1,7 +1,8 @@
 from nltk.book import FreqDist
+import sys
 
 # open the file
-nf = open('subjects_train', 'r')
+nf = open(str(sys.argv[1]), 'r')
 text = nf.read().split(' ')
 
 # count and display word occurances
@@ -10,8 +11,8 @@ print(fdist)
 
 # save output
 nf.close()
-output = open('worddist', 'w')
+output = open(str(sys.argv[1]) + '_dist', 'w')
 mc = fdist.most_common(1000)
-print(mc)
+output.write(str(mc))
 
 output.close()
