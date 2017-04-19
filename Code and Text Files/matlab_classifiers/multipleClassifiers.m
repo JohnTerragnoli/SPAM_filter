@@ -12,24 +12,22 @@ labels_train_names = cell(nLabels,1);
 labels_train_names(1:nSpam) = {'Spam'};
 labels_train_names(nSpam+1:end) = {'Ham'};
 
-%Combine Labels and Data Training Data
-labelsWithWords_train = table(labels_train_names,allWords_train);
-
-
 %Import and Condense Testing Data
 load('testingDataAndLabels.mat');
 allWords_test = [words_spam_test;words_ham_test];
 
-% %Make Training Labels into Strings
-% nSpam = length(words_spam_test);
-% nLabels = length(labels_test);
-% labels_test_names = cell(nLabels,1);
-% labels_test_names(1:nSpam) = {'Spam'};
-% labels_test_names(nSpam+1:end) = {'Ham'};
-% 
-% %Combine Labels and Data Training Data
-% labelsWithWords_test = table(labels_test_names,allWords_test);
+%Combine Labels and Training Data
+labelsWithWords_train = table(labels_train_names, allWords_train);
 
+% Make Testing Labels into Strings
+nSpam = length(words_spam_test);
+nLabels = length(labels_test);
+labels_test_names = cell(nLabels,1);
+labels_test_names(1:nSpam) = {'Spam'};
+labels_test_names(nSpam+1:end) = {'Ham'};
+
+% Combine Labeles and Testting Data
+labelsWithWords_test = table(labels_test_names, allWords_test);
 
 
 %% Coarse KNN 
@@ -37,7 +35,7 @@ allWords_test = [words_spam_test;words_ham_test];
 [coarseKNN_classifier, ~] = coarseKNN(labelsWithWords_train);
 
 %Predicts with Coarse KNN
-coarseKNN_predictions = coarseKNN_classifier.predictFcn(allWords_test);
+coarseKNN_predictions = coarseKNN_classifier.predictFcn(labelsWithWords_test);
 %I tried using the variable name 'allwords_train' but it still didn't like
 %that. I tried including the labels, since that's the exact format used
 %when creating this thing, but it didnt' like that eithe.  Any ideas? 
@@ -45,6 +43,8 @@ coarseKNN_predictions = coarseKNN_classifier.predictFcn(allWords_test);
 %% Linear Discriminant 
 %Create linear Discriminant
 [linearDiscrim_classifier, ~] = linearDiscriminant(labelsWithWords_train);
+
+linearDiscrim_predictions = linearDiscrim_classifier.predictFcn(labelsWithWords_test);
 
 %% Linear SVM 
 %Create linear SVM
