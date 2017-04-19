@@ -64,6 +64,8 @@ set(gca,'xticklabel',{'classified genuine' 'classified spam' ' '})
 disp('Exporting Data');
 save('trainingDataAndLabels.mat',...
     'labels_train','words_ham_test','words_spam_test');
+save('testingDataAndLabels.mat',...
+    'labels_test','words_ham','words_spam');
 
 
 
