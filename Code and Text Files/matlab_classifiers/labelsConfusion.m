@@ -1,5 +1,12 @@
 %% format labels into confusion matrix
-function [ truth, predicted ]= labelsConfusion( true_labels, p_labels, title, axis )
+%   Formats data and plots into a confusion matrix
+%
+%   INPUT: true and predicted labels in nSamples x 1 matrix
+%       title and axis labels are optional
+%   
+%   Brian Yarbrough
+%
+function labelsConfusion( true_labels, p_labels, title, axis )
 
 % check optional input argument
 switch nargin
@@ -7,9 +14,9 @@ switch nargin
         error('Too few input arguments');
     case 2
         title = '';
-        axis = unique(true_labels);
+        axis = {unique(true_labels) ''};        
     case 3
-        axis = unique(true_labels);        
+        axis = {unique(true_labels) ''};        
 end
 
 % get sizes
