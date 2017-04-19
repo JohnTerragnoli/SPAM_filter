@@ -39,8 +39,7 @@ allWords_test = [words_spam_test;words_ham_test];
 linear_discrim_XValid_classifier_predictions = ...
     linear_discrim_XValid_classifier.predictFcn(allWords_test);
 
-results = sum(labels_test == linear_discrim_XValid_classifier_predictions)...
-    ./length(labels_test);
+results = su
 
 
 % 
