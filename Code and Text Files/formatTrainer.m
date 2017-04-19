@@ -64,7 +64,7 @@ for k=1:size(enron_keywords, 1) % every keyword
     for n=1:sts % each email
        for w=1:size(spam_train, 2) % each word in subject
            if strcmp(spam_train(n,w), enron_keywords(k))
-            words(n,w) = 1;
+            words(n,k) = 1;
             break
            end
        end
@@ -73,7 +73,7 @@ for k=1:size(enron_keywords, 1) % every keyword
     for n=1:hts % each email
        for w=1:size(ham_train, 2) % each word in subject
            if  strcmp(ham_train(n,w), enron_keywords(k))
-            words(n + sts, w) = 1;
+            words(n + sts, k) = 1;
             break
            end
        end
@@ -99,7 +99,7 @@ for k=1:size(enron_keywords, 1) % every keyword
     for n=1:stst % each email
        for w=1:size(spam_test, 2) % each word in subject
            if strcmp(spam_test(n,w), enron_keywords(k))
-            test_words(n,w) = 1;
+            test_words(n,k) = 1;
             break
            end
        end
@@ -108,7 +108,7 @@ for k=1:size(enron_keywords, 1) % every keyword
     for n=1:htst % each email
        for w=1:size(ham_test, 2) % each word in subject
            if  strcmp(ham_test(n,w), enron_keywords(k))
-            test_words(n + stst, w) = 1;
+            test_words(n + stst, k) = 1;
             break
            end
        end
