@@ -63,9 +63,9 @@ set(gca,'xticklabel',{'classified genuine' 'classified spam' ' '})
 %% Export Training Data
 disp('Exporting Data');
 save('trainingDataAndLabels.mat',...
-    'labels_train','words_ham_test','words_spam_test');
+    'labels_train','words_ham','words_spam');
 save('testingDataAndLabels.mat',...
-    'labels_test','words_ham','words_spam');
+    'labels_test','words_ham_test','words_spam_test');
 
 %copy files into the matlab_classifiers folder
 copyfile trainingDataAndLabels.mat matlab_classifiers/
