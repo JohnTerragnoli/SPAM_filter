@@ -59,4 +59,12 @@ plotconfusion(expected, results);
 set(gca,'yticklabel',{'genuine' 'spam' ' '})
 set(gca,'xticklabel',{'classified genuine' 'classified spam' ' '})
 
+
+%% Export Training Data
+disp('Exporting Data');
+save('trainingDataAndLabels.mat',...
+    'labels_train','words_ham_test','words_spam_test');
+
+
+
 disp('formatTrainer Complete--------------------------------------------');
