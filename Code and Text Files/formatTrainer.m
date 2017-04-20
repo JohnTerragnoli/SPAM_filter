@@ -67,10 +67,6 @@ save('trainingDataAndLabels.mat',...
 save('testingDataAndLabels.mat',...
     'labels_test','words_ham_test','words_spam_test');
 
-%copy files into the matlab_classifiers folder
-copyfile trainingDataAndLabels.mat matlab_classifiers/
-copyfile testingDataAndLabels.mat matlab_classifiers/
-
 
 
 disp('formatTrainer Complete--------------------------------------------');
