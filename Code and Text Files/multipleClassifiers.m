@@ -1,6 +1,5 @@
 %% Import Training/Test Data and Format for Classifiers
-clear
-
+addpath(genpath('classifiers'));
 %Import and Condense Training Data
 load('trainingDataAndLabels.mat');
 allWords_train = [words_spam;words_ham];
@@ -12,26 +11,6 @@ labelsWithWords_train = [labels_train,allWords_train];
 load('testingDataAndLabels.mat');
 nEmails_test = length(labels_test);
 allWords_test = [words_spam_test;words_ham_test];
-
-
-%% Build Models 
-%this might be a faster way to do this, rather than having to copy and
-%paste code.  Is there a way to loop through a set of functions? 
-% train_function_names = ...
-%     {'linear_discrim_XValid','linear_discrim_holdout25','linear_discrim_noValid',...
-%     'linear_SVM_XValid','linear_SVM_holdout25','linear_SVM_noValid',...
-%     'logistic_regression_XValid','logistic_regression_holdout25','logistic_regression_noValid'};
-% nTrainFunctions = length(train_function_names);
-% Accuracy = zeros(3,3);
-% 
-% %Save Predictions from all methods in Single array
-% %   Each column is the result of one of the training methods.  Uses same
-% %   order as train_function_names.  
-% allPredictions = zeros(nEmails_test,nTrainFunctions);
-% 
-% for i = 1:nTrainFunctions
-%     train_function_names(i)
-% end
 
 
 %% Linear Discriminant Cross Validation
